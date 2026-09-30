@@ -3,7 +3,7 @@ import { baseWeddingSlug, slugCandidate } from "@/modules/weddings/slug";
 
 describe("baseWeddingSlug", () => {
   it("uses bride-groom-DDMMYYYY", () => {
-    expect(baseWeddingSlug("Princi", "Akshay", "2027-02-14")).toBe("princi-akshay-14022027");
+    expect(baseWeddingSlug("Shipra", "Himanshu", "2027-02-14")).toBe("shipra-himanshu-14022027");
   });
 
   it("normalizes spaces, punctuation and accents", () => {
@@ -11,7 +11,7 @@ describe("baseWeddingSlug", () => {
   });
 
   it("falls back when names contain no Latin characters", () => {
-    expect(baseWeddingSlug("प्रिंसी", "अक्षय", "2027-02-14")).toBe("wedding-14022027");
+    expect(baseWeddingSlug("शिप्रा", "हिमांशु", "2027-02-14")).toBe("wedding-14022027");
   });
 });
 

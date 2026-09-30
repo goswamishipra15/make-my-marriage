@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Icon } from "@/components/ui/icon";
 
 export function FamilyRoles() {
@@ -8,27 +10,25 @@ export function FamilyRoles() {
     >
       <div className="mx-auto max-w-[1360px] px-margin-mobile md:px-margin">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          {/* Visual column. Decorative panel stands in for editorial photography;
-              drop a real image in /public and swap for next/image when available. */}
+          {/* Visual column */}
           <div className="relative lg:col-span-6">
-            <div className="flex h-[440px] items-center justify-center overflow-hidden rounded-xl border border-outline-variant/40 bg-gradient-to-br from-surface-container via-surface-container-high to-secondary-fixed/40">
-              <div className="flex flex-col items-center gap-4 text-center">
-                <span
-                  aria-hidden="true"
-                  className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-container font-headline text-2xl text-surface-container-lowest ring-1 ring-secondary/40"
-                >
-                  S&amp;H
-                </span>
-                <p className="max-w-[16rem] font-headline-sm text-headline-sm italic text-primary">
-                  Three generations, one shared plan.
-                </p>
-              </div>
+            <div className="relative h-[440px] overflow-hidden rounded-xl border border-outline-variant/40 bg-surface-container-lowest shadow-xl">
+              <Image
+                src="/marketing/family-planning.jpg"
+                alt="Three generations of an Indian family sitting together on cushioned seating in a marigold-draped courtyard, reviewing their wedding plan on a tablet"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
             </div>
 
             <div className="absolute -bottom-6 -right-4 flex items-center gap-4 rounded-lg border border-secondary/30 bg-surface-container-lowest p-5 shadow-lg md:right-8">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-container text-surface-container-lowest">
-                <Icon name="groups" className="text-xl" />
-              </div>
+              <span
+                aria-hidden="true"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-container font-headline text-xl text-surface-container-lowest"
+              >
+                S&amp;H
+              </span>
               <div>
                 <p className="font-title-md text-title-md text-primary">Role-Based Simplicity</p>
                 <p className="font-label-sm text-label-sm text-on-surface-variant">

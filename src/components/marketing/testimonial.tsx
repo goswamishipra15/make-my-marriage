@@ -1,12 +1,15 @@
+import Image from "next/image";
+
 import { Icon } from "@/components/ui/icon";
 
 /**
  * PLACEHOLDER CONTENT.
  *
- * The quote, rating and attribution below are sample copy carried over from the
- * design mock. Replace with a real, consented customer story before launch, or
- * remove the section entirely — shipping invented testimonials is misleading
- * and, for a paid product, a consumer-protection risk.
+ * The quote, rating, attribution and portrait below are sample content carried
+ * over from the design mock — the photo is generated stock, not a real couple.
+ * Replace with a real, consented customer story before launch, or remove the
+ * section entirely; shipping invented testimonials is misleading and, for a
+ * paid product, a consumer-protection risk.
  */
 const STORY = {
   quote:
@@ -14,8 +17,10 @@ const STORY = {
   couple: "Shipra & Himanshu",
   meta: "Married December 2026 · Delhi & Udaipur",
   scale: "Udaipur nuptials · 500+ guests",
-  initials: "S&H",
   rating: 5,
+  image: "/marketing/story-shipra-himanshu.jpg",
+  imageAlt:
+    "A couple in matching burgundy and gold wedding attire embracing on a lakeside terrace in Udaipur at dusk",
 };
 
 export function Testimonial() {
@@ -28,11 +33,14 @@ export function Testimonial() {
         <Icon name="format_quote" className="absolute top-8 right-10 text-6xl text-secondary/20" />
 
         <div className="flex flex-col items-center gap-8 md:flex-row">
-          <div
-            aria-hidden="true"
-            className="flex h-28 w-28 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-surface-container to-secondary-fixed/50 font-headline text-2xl text-primary ring-2 ring-secondary/30 md:h-36 md:w-36"
-          >
-            {STORY.initials}
+          <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-lg ring-2 ring-secondary/30 md:h-36 md:w-36">
+            <Image
+              src={STORY.image}
+              alt={STORY.imageAlt}
+              fill
+              sizes="(min-width: 768px) 144px, 112px"
+              className="object-cover"
+            />
           </div>
 
           <div className="space-y-4">

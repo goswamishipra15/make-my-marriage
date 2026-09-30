@@ -314,7 +314,7 @@ Includes:
 Example:
 
 ```text
-/w/akshay-princi-14022027
+/w/shipra-himanshu-14022027
 ```
 
 Does not require authentication.
@@ -896,7 +896,7 @@ Each Wedding has a public website.
 Example:
 
 ```text
-/w/akshay-princi-14022027
+/w/shipra-himanshu-14022027
 ```
 
 The page resolves the slug to a Wedding.
@@ -923,7 +923,7 @@ brideName-groomName-weddingDate
 Example:
 
 ```text
-akshay-princi-14022027
+shipra-himanshu-14022027
 ```
 
 Slug generation should:
@@ -937,9 +937,9 @@ Slug generation should:
 Example collision:
 
 ```text
-akshay-princi-14022027
+shipra-himanshu-14022027
 
-akshay-princi-14022027-2
+shipra-himanshu-14022027-2
 ```
 
 The slug should remain stable after creation.

@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { Button } from "@/components/ui/button";
+
+import { AuthField } from "@/components/auth/auth-field";
+import { AuthSubmit } from "@/components/auth/auth-submit";
+import { PasswordField } from "@/components/auth/password-field";
 import { FormAlert } from "@/components/ui/form-alert";
-import { TextField } from "@/components/ui/text-field";
 import { ApiError, apiRequest } from "@/lib/api-client";
 
 export function SignupForm() {
@@ -22,6 +23,8 @@ export function SignupForm() {
     setFieldErrors({});
 
     try {
+      // API_DESIGN §11: signup creates the account and the session in one call,
+      // so a new user always lands on onboarding to create their wedding.
       await apiRequest("POST", "/api/auth/signup", {
         name: String(form.get("name") ?? ""),
         email: String(form.get("email") ?? ""),
@@ -41,29 +44,42 @@ export function SignupForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-space-md">
       <FormAlert message={formError} />
-      <TextField label="Your name" name="name" autoComplete="name" required error={fieldErrors.name} />
-      <TextField label="Email" name="email" type="email" autoComplete="email" required error={fieldErrors.email} />
-      <TextField
-        label="Password"
-        name="password"
-        type="password"
-        autoComplete="new-password"
+
+      <AuthField
+        label="Your full name"
+        icon="badge"
+        name="name"
+        type="text"
+        autoComplete="name"
+        placeholder="e.g. Priya Sharma"
+        maxLength={120}
         required
+        error={fieldErrors.name}
+      />
+
+      <AuthField
+        label="Email address"
+        icon="mail"
+        name="email"
+        type="email"
+        autoComplete="email"
+        placeholder="you@example.com"
+        required
+        error={fieldErrors.email}
+      />
+
+      {/* Hint mirrors passwordSchema in src/modules/auth/schemas.ts. */}
+      <PasswordField
+        autoComplete="new-password"
         minLength={8}
+        required
         hint="At least 8 characters"
         error={fieldErrors.password}
       />
-      <Button type="submit" loading={pending}>
-        Create account
-      </Button>
-      <p className="text-center text-sm text-muted-foreground">
-        Already have an account?{" "}
-        <Link href="/login" className="font-medium text-brand underline-offset-4 hover:underline">
-          Sign in
-        </Link>
-      </p>
+
+      <AuthSubmit pending={pending}>Create your workspace</AuthSubmit>
     </form>
   );
 }

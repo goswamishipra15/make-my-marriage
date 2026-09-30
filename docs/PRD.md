@@ -411,7 +411,7 @@ Optional:
 
 Example:
 
-**Akshay ❤️ Princi**
+**Shipra ❤️ Princi**
 
 14 February 2027  
 Dehradun, Uttarakhand
@@ -670,7 +670,7 @@ The invitation experience should display:
 
 Example:
 
-**Akshay & Princi**
+**Shipra & Princi**
 
 would love for you to celebrate their wedding with them.
 

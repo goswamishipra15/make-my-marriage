@@ -430,8 +430,8 @@ Creates an account and authenticated session.
 
 ```json
 {
-  "name": "Akshay Saini",
-  "email": "akshay@example.com",
+  "name": "Himanshu Saini",
+  "email": "himanshu@example.com",
   "password": "strong-password"
 }
 ```
@@ -461,8 +461,8 @@ Set Cookie
   "data": {
     "user": {
       "id": "userId",
-      "name": "Akshay Saini",
-      "email": "akshay@example.com"
+      "name": "Himanshu Saini",
+      "email": "himanshu@example.com"
     },
     "hasWedding": false
   }
@@ -488,7 +488,7 @@ No email verification occurs.
 
 ```json
 {
-  "email": "akshay@example.com",
+  "email": "himanshu@example.com",
   "password": "password"
 }
 ```
@@ -500,8 +500,8 @@ No email verification occurs.
   "data": {
     "user": {
       "id": "userId",
-      "name": "Akshay Saini",
-      "email": "akshay@example.com"
+      "name": "Himanshu Saini",
+      "email": "himanshu@example.com"
     },
     "hasWedding": true
   }
@@ -563,16 +563,16 @@ Returns current authenticated user and Wedding membership information.
   "data": {
     "user": {
       "id": "userId",
-      "name": "Akshay Saini",
-      "email": "akshay@example.com"
+      "name": "Himanshu Saini",
+      "email": "himanshu@example.com"
     },
     "membership": {
       "role": "ADMIN"
     },
     "wedding": {
       "id": "weddingId",
-      "brideName": "Princi",
-      "groomName": "Akshay",
+      "brideName": "Shipra",
+      "groomName": "Himanshu",
       "weddingDate": "2027-02-14"
     }
   }
@@ -586,8 +586,8 @@ If user does not yet belong to a Wedding:
   "data": {
     "user": {
       "id": "userId",
-      "name": "Akshay Saini",
-      "email": "akshay@example.com"
+      "name": "Himanshu Saini",
+      "email": "himanshu@example.com"
     },
     "membership": null,
     "wedding": null
@@ -605,7 +605,7 @@ If user does not yet belong to a Wedding:
 
 ```json
 {
-  "email": "akshay@example.com"
+  "email": "himanshu@example.com"
 }
 ```
 
@@ -676,9 +676,9 @@ Only users without an existing Wedding Membership can use this endpoint.
 
 ```json
 {
-  "brideName": "Princi",
-  "groomName": "Akshay",
-  "title": "Akshay & Princi",
+  "brideName": "Shipra",
+  "groomName": "Himanshu",
+  "title": "Shipra & Himanshu",
   "description": "We are getting married!",
   "weddingDate": "2027-02-14",
   "timeZone": "Asia/Kolkata",
@@ -717,11 +717,11 @@ gallery token
 {
   "data": {
     "id": "weddingId",
-    "brideName": "Princi",
-    "groomName": "Akshay",
+    "brideName": "Shipra",
+    "groomName": "Himanshu",
     "weddingDate": "2027-02-14",
     "website": {
-      "slug": "princi-akshay-14022027"
+      "slug": "shipra-himanshu-14022027"
     }
   }
 }
@@ -750,9 +750,9 @@ Returns current Wedding.
 {
   "data": {
     "id": "weddingId",
-    "brideName": "Princi",
-    "groomName": "Akshay",
-    "title": "Akshay & Princi",
+    "brideName": "Shipra",
+    "groomName": "Himanshu",
+    "title": "Shipra & Himanshu",
     "description": "...",
     "weddingDate": "2027-02-14",
     "timeZone": "Asia/Kolkata",
@@ -788,8 +788,8 @@ Any subset:
 
 ```json
 {
-  "brideName": "Princi",
-  "groomName": "Akshay",
+  "brideName": "Shipra",
+  "groomName": "Himanshu",
   "description": "Updated welcome message",
   "weddingDate": "2027-02-14",
   "location": {
@@ -863,8 +863,8 @@ Admin and Manager can view members.
       "membershipId": "...",
       "user": {
         "id": "...",
-        "name": "Akshay Saini",
-        "email": "akshay@example.com"
+        "name": "Himanshu Saini",
+        "email": "himanshu@example.com"
       },
       "role": "ADMIN",
       "joinedAt": "..."
@@ -966,8 +966,8 @@ Returns enough information to render the invitation page.
     "email": "rahul@example.com",
     "role": "MANAGER",
     "wedding": {
-      "brideName": "Princi",
-      "groomName": "Akshay",
+      "brideName": "Shipra",
+      "groomName": "Himanshu",
       "weddingDate": "2027-02-14"
     },
     "requiresLogin": true
@@ -1754,8 +1754,8 @@ Return invitation data
       "attendingCount": null
     },
     "wedding": {
-      "brideName": "Princi",
-      "groomName": "Akshay",
+      "brideName": "Shipra",
+      "groomName": "Himanshu",
       "weddingDate": "2027-02-14",
       "timeZone": "Asia/Kolkata",
       "title": "Our celebration",
@@ -2205,7 +2205,7 @@ Authentication required.
 ```json
 {
   "data": {
-    "slug": "princi-akshay-14022027",
+    "slug": "shipra-himanshu-14022027",
     "theme": "CLASSIC",
     "isPublished": false,
     "welcomeMessage": "..."
@@ -2248,9 +2248,9 @@ Returns only public website information.
 ```json
 {
   "data": {
-    "brideName": "Princi",
-    "groomName": "Akshay",
-    "title": "Akshay & Princi",
+    "brideName": "Shipra",
+    "groomName": "Himanshu",
+    "title": "Shipra & Himanshu",
     "description": "...",
     "weddingDate": "2027-02-14",
     "coverImageUrl": "...",
@@ -2536,8 +2536,8 @@ Returns:
 {
   "data": {
     "wedding": {
-      "brideName": "Princi",
-      "groomName": "Akshay",
+      "brideName": "Shipra",
+      "groomName": "Himanshu",
       "weddingDate": "2027-02-14"
     },
     "guestUploadsEnabled": true,

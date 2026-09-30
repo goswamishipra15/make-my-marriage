@@ -193,6 +193,16 @@ body {
   font-family: var(--font-jakarta), system-ui, sans-serif;
 }
 
+/*
+ * Microsoft Edge draws its own password-reveal eye inside password inputs.
+ * PasswordField renders its own toggle, so its input opts out via
+ * data-reveal-toggle to avoid showing two eyes. Kept as a standalone rule so
+ * browsers that don't recognise ::-ms-reveal drop only this rule.
+ */
+input[data-reveal-toggle]::-ms-reveal {
+  display: none;
+}
+
 /* Material Symbols sizing helper used by the app shell and marketing pages. */
 .material-symbols-outlined {
   font-variation-settings:

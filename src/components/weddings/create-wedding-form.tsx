@@ -76,7 +76,7 @@ export function CreateWeddingForm() {
       <TextField
         label="Wedding title"
         name="title"
-        placeholder="Akshay ❤️ Princi"
+        placeholder="Shipra ❤️ Himanshu"
         hint="Optional. You can change this later."
         error={fieldErrors.title}
       />

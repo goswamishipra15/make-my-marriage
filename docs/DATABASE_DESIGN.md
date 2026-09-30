@@ -673,7 +673,7 @@ website: {
 Example:
 
 ```text
-akshay-princi-14022027
+shipra-himanshu-14022027
 ```
 
 Index:
@@ -685,7 +685,7 @@ unique(website.slug)
 If a collision occurs:
 
 ```text
-akshay-princi-14022027-2
+shipra-himanshu-14022027-2
 ```
 
 Once created, the slug remains stable.

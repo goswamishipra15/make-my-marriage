@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { createWeddingSchema } from "@/modules/weddings/schemas";
 
 const valid = {
-  brideName: "Princi",
-  groomName: "Akshay",
+  brideName: "Shipra",
+  groomName: "Himanshu",
   weddingDate: "2027-02-14",
   location: { city: "Dehradun" },
 };

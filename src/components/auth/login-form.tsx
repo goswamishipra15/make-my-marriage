@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { Button } from "@/components/ui/button";
+
+import { AuthField } from "@/components/auth/auth-field";
+import { AuthSubmit } from "@/components/auth/auth-submit";
+import { PasswordField } from "@/components/auth/password-field";
 import { FormAlert } from "@/components/ui/form-alert";
-import { TextField } from "@/components/ui/text-field";
 import { ApiError, apiRequest } from "@/lib/api-client";
 
 export function LoginForm() {
@@ -22,6 +23,7 @@ export function LoginForm() {
     setFieldErrors({});
 
     try {
+      // API_DESIGN §12: returns the user plus whether they already have a wedding.
       const result = await apiRequest<{ hasWedding: boolean }>("POST", "/api/auth/login", {
         email: String(form.get("email") ?? ""),
         password: String(form.get("password") ?? ""),
@@ -40,26 +42,23 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
+    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-space-md">
       <FormAlert message={formError} />
-      <TextField label="Email" name="email" type="email" autoComplete="email" required error={fieldErrors.email} />
-      <TextField
-        label="Password"
-        name="password"
-        type="password"
-        autoComplete="current-password"
+
+      <AuthField
+        label="Email address"
+        icon="mail"
+        name="email"
+        type="email"
+        autoComplete="email"
+        placeholder="you@example.com"
         required
-        error={fieldErrors.password}
+        error={fieldErrors.email}
       />
-      <Button type="submit" loading={pending}>
-        Sign in
-      </Button>
-      <p className="text-center text-sm text-muted-foreground">
-        New here?{" "}
-        <Link href="/signup" className="font-medium text-brand underline-offset-4 hover:underline">
-          Create an account
-        </Link>
-      </p>
+
+      <PasswordField autoComplete="current-password" required error={fieldErrors.password} />
+
+      <AuthSubmit pending={pending}>Sign in to your workspace</AuthSubmit>
     </form>
   );
 }

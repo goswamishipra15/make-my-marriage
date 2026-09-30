@@ -84,10 +84,6 @@ function WorkspacePreview() {
               makemymarriage.com / shipra-himanshu
             </span>
           </div>
-          <div className="flex items-center gap-2 font-label-md text-xs text-on-surface-variant">
-            <span aria-hidden="true" className="h-2 w-2 animate-pulse rounded-full bg-emerald-600" />
-            Family Sync Active
-          </div>
         </div>
 
         <div className="space-y-6 bg-surface-bright/40 p-6 md:p-8">

@@ -17,6 +17,7 @@ changing behaviour; they are the source of truth:
 - `docs/SYSTEM_DESIGN.md` — architecture (modular monolith on Next.js + Vercel)
 - `docs/DATABASE_DESIGN.md` — MongoDB collections, indexes, tenant rules
 - `docs/API_DESIGN.md` — REST endpoints, error format, pagination, rate limits
+- `docs/STATUS.md` — **living progress log**: what is built, what is verified, what is next
 
 ## Stack (exact versions pinned in package.json)
 
@@ -25,6 +26,7 @@ Next.js 16 (App Router, Route Handlers, Turbopack) · React 19 · TypeScript (st
 Vitest 5 · ESLint 9 + Prettier. Node.js 24 LTS (minimum 20.9).
 
 Next.js 16 specifics already applied:
+
 - `src/proxy.ts` replaces `middleware.ts` (exports `proxy`).
 - Route `params` and `cookies()` are async: `const { id } = await params`.
 
@@ -68,21 +70,28 @@ Private API flow: `withHandler` → `requireMember()` / `requireAdmin()` → Zod
 8. Events and Vendors are archived (`archivedAt`); Weddings soft-deleted (`deletedAt`);
    Tasks, Guests and Expenses hard-deleted.
 
-## Current status (branch `dev`)
+## Current status → `docs/STATUS.md`
 
-Phase 1 foundation code exists but is **not yet verified**:
-- Implemented: signup, login, logout, `GET /api/auth/me`, `POST/GET /api/wedding`
-  (transactional wedding + ADMIN membership), onboarding page, dashboard shell,
-  MongoDB-backed rate limiting.
-- Empty module folders (`.gitkeep`): events, tasks, guests, invitations, expenses, vendors,
-  website, photos, livestream, dashboard, email-jobs; server/storage, email, places.
-- The last `tsc` run reported errors in `src/modules/weddings/service.ts` and two `LayoutProps`
-  usages. Fixes were applied afterwards, but typecheck, lint, tests and `npm run build` have
-  **not** been re-run. First task in a new session: run those four commands and fix failures.
-- Signup/login need a real MongoDB Atlas URI (transactions require a replica set).
+**Read `docs/STATUS.md` first in every session.** It holds the current phase, what is
+implemented, the last recorded results of typecheck / lint / test / build, open blockers
+and the next tasks. Do not duplicate that state here: this file describes the rules,
+`docs/STATUS.md` describes the progress.
 
-Next phases (PRD §16): Events + Tasks → Guests/Invitations/RSVP → Expenses/Vendors →
-Website/Livestream → Gallery/Photos (Cloudflare R2) → production readiness.
+**Update `docs/STATUS.md` whenever you change code**, as part of the same change:
+
+1. Adjust **Phase progress** and **Implemented** / **Not started** to match reality.
+2. Re-run `npm run typecheck`, `npm run lint`, `npm test`, `npm run build` and record the
+   real outcomes with the date in **Verification status**. Never mark a check verified
+   without running it — write "Unknown" instead.
+3. Add a dated entry at the top of **Change log** with the commit hash.
+4. Refresh **Open items and blockers** and **Next up**, removing what is resolved.
+5. Bump the **Snapshot** table (last updated date, last commit).
+
+Treat a code change with a stale `docs/STATUS.md` as incomplete work.
+
+Phase order (PRD §16): Foundation → Events + Tasks → Guests/Invitations/RSVP →
+Expenses/Vendors → Website/Livestream → Gallery/Photos (Cloudflare R2) → production
+readiness.
 
 ## Doc inconsistencies and decisions taken
 
