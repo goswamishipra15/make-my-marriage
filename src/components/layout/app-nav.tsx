@@ -2,32 +2,37 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Icon } from "@/components/ui/icon";
 
 /**
- * Main navigation (PRD §10). Modules not yet built are shown as "Soon"
- * so the shell reflects the full product without linking to missing pages.
+ * Main navigation (PRD §10), styled as the design system's sidebar rail.
+ *
+ * Modules that do not exist yet are rendered as disabled with a "Soon" chip so
+ * the shell reflects the whole product without linking to missing routes. The
+ * design mock showed live counts on these items; those stay off until the
+ * corresponding modules can supply real numbers.
  */
-type NavItem = { label: string; href: string; ready: boolean };
+type NavItem = { label: string; href: string; icon: string; ready: boolean };
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Dashboard", href: "/app/dashboard", ready: true },
-  { label: "Events", href: "/app/events", ready: false },
-  { label: "Tasks", href: "/app/tasks", ready: false },
-  { label: "Guests", href: "/app/guests", ready: false },
-  { label: "Expenses", href: "/app/expenses", ready: false },
-  { label: "Vendors", href: "/app/vendors", ready: false },
-  { label: "Wedding Website", href: "/app/website", ready: false },
-  { label: "Photos", href: "/app/photos", ready: false },
-  { label: "Live Stream", href: "/app/livestream", ready: false },
-  { label: "Settings", href: "/app/settings", ready: false },
+  { label: "Dashboard", href: "/app/dashboard", icon: "dashboard", ready: true },
+  { label: "Events", href: "/app/events", icon: "calendar_month", ready: false },
+  { label: "Tasks", href: "/app/tasks", icon: "check_circle", ready: false },
+  { label: "Guests", href: "/app/guests", icon: "group", ready: false },
+  { label: "Expenses", href: "/app/expenses", icon: "account_balance_wallet", ready: false },
+  { label: "Vendors", href: "/app/vendors", icon: "storefront", ready: false },
+  { label: "Wedding Website", href: "/app/website", icon: "language", ready: false },
+  { label: "Photos", href: "/app/photos", icon: "photo_library", ready: false },
+  { label: "Live Stream", href: "/app/livestream", icon: "live_tv", ready: false },
+  { label: "Settings", href: "/app/settings", icon: "settings", ready: false },
 ];
 
 export function AppNav() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Main">
-      <ul className="flex gap-1 overflow-x-auto md:flex-col">
+    <nav aria-label="Main" className="flex-1 lg:overflow-y-auto">
+      <ul className="flex gap-1 overflow-x-auto px-space-sm lg:flex-col lg:space-y-1 lg:overflow-x-visible">
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
@@ -36,10 +41,15 @@ export function AppNav() {
               <li key={item.href}>
                 <span
                   aria-disabled="true"
-                  className="flex min-h-10 items-center justify-between gap-2 whitespace-nowrap rounded-lg px-3 text-sm text-muted-foreground/70"
+                  className="flex min-h-10 items-center justify-between gap-space-sm whitespace-nowrap rounded-lg px-space-md py-space-sm text-on-surface-variant/60"
                 >
-                  {item.label}
-                  <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] uppercase tracking-wide">Soon</span>
+                  <span className="flex items-center gap-space-sm">
+                    <Icon name={item.icon} className="text-base" />
+                    <span className="font-body-md text-body-md">{item.label}</span>
+                  </span>
+                  <span className="rounded-full bg-surface-container px-2 py-0.5 font-label-sm text-[10px] uppercase tracking-wide">
+                    Soon
+                  </span>
                 </span>
               </li>
             );
@@ -50,11 +60,16 @@ export function AppNav() {
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-10 items-center whitespace-nowrap rounded-lg px-3 text-sm font-medium ${
-                  active ? "bg-brand text-brand-foreground" : "hover:bg-muted"
+                className={`flex min-h-10 items-center justify-between gap-space-sm whitespace-nowrap rounded-lg px-space-md py-space-sm transition-all ${
+                  active
+                    ? "bg-primary-container font-title-md text-surface-container-lowest"
+                    : "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface"
                 }`}
               >
-                {item.label}
+                <span className="flex items-center gap-space-sm">
+                  <Icon name={item.icon} className="text-base" />
+                  <span className="font-body-md text-body-md">{item.label}</span>
+                </span>
               </Link>
             </li>
           );

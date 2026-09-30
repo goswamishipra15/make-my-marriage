@@ -1,30 +1,29 @@
-import Link from "next/link";
+import { Comparison } from "@/components/marketing/comparison";
+import { Cta } from "@/components/marketing/cta";
+import { FamilyRoles } from "@/components/marketing/family-roles";
+import { Hero } from "@/components/marketing/hero";
+import { Pillars } from "@/components/marketing/pillars";
+import { SiteFooter } from "@/components/marketing/site-footer";
+import { SiteHeader } from "@/components/marketing/site-header";
+import { Testimonial } from "@/components/marketing/testimonial";
 
+/**
+ * Public marketing home page, built from the Stitch screen
+ * "Make My Marriage - Home" (projects/693186422638847542).
+ */
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center px-4 py-16 text-center">
-      <p className="text-sm font-medium uppercase tracking-widest text-accent">Make My Marriage</p>
-      <h1 className="mt-3 max-w-2xl text-4xl font-semibold sm:text-5xl">
-        Plan your Indian wedding together, in one place.
-      </h1>
-      <p className="mt-4 max-w-xl text-muted-foreground">
-        Events, tasks, guests, RSVPs, expenses, vendors, your wedding website and photos, shared with the family
-        members helping you plan.
-      </p>
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Link
-          href="/signup"
-          className="inline-flex min-h-11 items-center rounded-lg bg-brand px-5 text-sm font-medium text-brand-foreground hover:opacity-90"
-        >
-          Get started
-        </Link>
-        <Link
-          href="/login"
-          className="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-5 text-sm font-medium hover:bg-muted"
-        >
-          Sign in
-        </Link>
-      </div>
-    </main>
+    <>
+      <SiteHeader />
+      <main className="w-full flex-1 bg-surface pt-20">
+        <Hero />
+        <Comparison />
+        <Pillars />
+        <FamilyRoles />
+        <Testimonial />
+        <Cta />
+      </main>
+      <SiteFooter />
+    </>
   );
 }

@@ -30,3 +30,9 @@ npm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local tool output / scratch files
+gitstat.txt
+tsc-out.txt
+verify.txt
+lint-run.log
